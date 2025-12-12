@@ -10,5 +10,5 @@ $livroFiltrado = array_filter($livros, function ($li) use ($id) {
 
 $livro = array_pop($livroFiltrado);
 
-$view = "livro";
-require "views/template/app.php";
+
+view("livro", ["livro" => $livro]);
