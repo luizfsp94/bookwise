@@ -1,17 +1,3 @@
-<?php
-
-require "dados.php";
-
-$id = $_REQUEST["id"];
-
-$livroFiltrado = array_filter($livros, function ($li) use ($id) {
-    return $li["id"] == $id;
-});
-
-$livro = array_pop($livroFiltrado);
-
-?>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -97,26 +83,7 @@ $livro = array_pop($livroFiltrado);
         </div>
     </header>
     <main class="container">
-        <section id="explorar-livro">
-            <h2>Explorar</h2>
-            <form action="">
-                <input type="text" name="pesquisar" placeholder="Pesquisar livro...">
-                <button>Pesquisar</button>
-            </form>
-        </section>
-        <section id="lista-livros">
-            <div class="card-livro-conteudo">
-                <div class="card-livro">
-                    <div>Imagem</div>
-                    <div>
-                        <div><?=  $livro["titulo"]; ?></div>
-                        <div><?=  $livro["autor"]; ?></div>
-                        <div>Avaliações</div>
-                    </div>
-                </div>
-                <div><?=  $livro["descricao"]; ?></div>
-            </div>
-        </section>
+        <?php require "views/{$view}.view.php"; ?>
     </main>
 </body>
 </html>
