@@ -1,6 +1,14 @@
-<?php 
+<?php
 
 require "dados.php";
+
+$id = $_REQUEST["id"];
+
+$livroFiltrado = array_filter($livros, function ($li) use ($id) {
+    return $li["id"] == $id;
+});
+
+$livro = array_pop($livroFiltrado);
 
 ?>
 
@@ -97,19 +105,17 @@ require "dados.php";
             </form>
         </section>
         <section id="lista-livros">
-            <?php foreach($livros as $livro) : ?>
-                <div class="card-livro-conteudo">
-                    <div class="card-livro">
-                        <div>Imagem</div>
-                        <div>
-                            <a href="/livro.php?id=<?= $livro["id"]; ?>"><?=  $livro["titulo"]; ?></a>
-                            <div><?=  $livro["autor"]; ?></div>
-                            <div>Avaliações</div>
-                        </div>
+            <div class="card-livro-conteudo">
+                <div class="card-livro">
+                    <div>Imagem</div>
+                    <div>
+                        <div><?=  $livro["titulo"]; ?></div>
+                        <div><?=  $livro["autor"]; ?></div>
+                        <div>Avaliações</div>
                     </div>
-                    <div><?=  $livro["descricao"]; ?></div>
                 </div>
-            <?php endforeach; ?>
+                <div><?=  $livro["descricao"]; ?></div>
+            </div>
         </section>
     </main>
 </body>
